@@ -1,4 +1,4 @@
-
+$(warning hello)
 this_makefile = $(lastword $(MAKEFILE_LIST))
 
 dirname = $(foreach d,$(dir $1),$(d:%/=%))

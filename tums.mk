@@ -6,15 +6,32 @@ all:
 src_root := .
 bld_root = bld
 
-$(if $(subst $(realpath $(src_root)),,$(realpath $(bld_root))),$(info paths ok),$(error paths bad))
+$(warning src_root: $(realpath $(src_root)))
+$(warning bld_root: $(realpath $(bld_root)))
+$(if $(realpath $(bld_root)),,$(shell mkdir $(bld_root)))
+# $(warning subst: $(subst $(realpath $(src_root)),,$(realpath $(bld_root))))
+
+$(if $(subst $(realpath $(src_root)),,$(realpath $(bld_root))),\
+    $(info paths ok),\
+    $(error paths bad: $(realpath $(src_root)) $(realpath $(bld_root))))
 
 bin = $(bld_root)/bin
 
-this_rules.mk = $(lastword $(MAKEFILE_LIST))
+stem = $1
+
+this_rules.mk = $(lastword $(filter %/rules.mk,$(MAKEFILE_LIST)))
 src = $(patsubst %/,%,$(dir $(this_rules.mk)))
 bld = $(bld_root)/$(src)
 
 include make/features/*.mk
-include make/patterns/*.mk
+
+deps =
 
 -include rules.mk
+
+stem = $*
+
+include make/patterns/*.mk
+
+# -include $(deps)
+
