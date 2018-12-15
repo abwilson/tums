@@ -1,4 +1,4 @@
 # tums
 TUMS - The Ultimate Make System
 
-A non-recursive make system. Work in progress.
+A way of writing non-recursive make systems. Work in progress.
