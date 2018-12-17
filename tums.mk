@@ -19,7 +19,8 @@ bin = $(bld_root)/bin
 
 stem = $1
 
-this_rules.mk = $(lastword $(filter %/rules.mk,$(MAKEFILE_LIST)))
+this_rules.mk = $(lastword $(filter %rules.mk,$(MAKEFILE_LIST)))
+. = $(patsubst %/,%,$(dir $(this_rules.mk)))
 src = $(patsubst %/,%,$(dir $(this_rules.mk)))
 bld = $(bld_root)/$(src)
 
@@ -27,7 +28,7 @@ include make/features/*.mk
 
 deps =
 
--include rules.mk
+-include ./rules.mk
 
 stem = $*
 
