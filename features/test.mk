@@ -1,5 +1,6 @@
 define test_impl
-    test: $(1:%=$(bld)/%.ok)
+    $(info Defining test "$1".)    
+    $(eval test: $(1:%=$(bld)/%.ok))
     $(eval $1.src ?= $(wildcard $(src)/*Test.cpp))
     $(eval $1.libs += gtest_main gtest gmock)
     $(exec_impl)
@@ -8,11 +9,5 @@ define test_impl
     $(info bld in test $(bld))
 endef
 
-define test
-    $(eval $(test_impl))
-endef
-
-
-
-
+test = $(eval $(test_impl))
 

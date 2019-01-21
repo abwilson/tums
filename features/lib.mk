@@ -7,5 +7,6 @@ define lib_impl
     $(target): $($1.src:$(src)/%.cpp=$(bld)/%.o)
      -include $($1.src:$(src)/%.cpp=$(bld)/%.d)
 endef
+
 lib = $(eval $(lib_impl))
 
