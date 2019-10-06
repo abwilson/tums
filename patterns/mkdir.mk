@@ -1,2 +1,3 @@
+.PRECIOUS: %/.
 %/.:
 	mkdir -p $(@D)

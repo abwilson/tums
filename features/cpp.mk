@@ -1,5 +1,5 @@
 CPPFLAGS =
-CXXFLAGS = --std=c++14 -MD
+CXXFLAGS = --std=c++17 -MD -g -O3
 
 # cpp_read_deps = $(eval -include $(@:.o=.d))
 
