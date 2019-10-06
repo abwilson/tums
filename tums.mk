@@ -20,7 +20,10 @@ bin = $(bld_root)/bin
 stem = $1
 
 this_rules.mk = $(lastword $(filter %rules.mk,$(MAKEFILE_LIST)))
-. = $(patsubst %/,%,$(dir $(this_rules.mk)))
+# . = $(patsubst %/,%,$(dir $(this_rules.mk)))
+
+. = $(this_rules.mk:%/rules.mk=%)
+
 src = $(patsubst %/,%,$(dir $(this_rules.mk)))
 bld = $(bld_root)/$(src)
 
